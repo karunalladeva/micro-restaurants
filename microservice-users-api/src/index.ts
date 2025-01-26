@@ -10,14 +10,14 @@ import { User } from './models/User';
 // var cors = require('cors')
 import cors from "cors";
 
-const c = config.dev;
+const c = config.prod;
 
 (async () => {
   await sequelize.addModels(Models);
   await sequelize.sync();
 
   const app = express();
-  const port = process.env.PORT || 8080; // default port to listen
+  const port = process.env.PORT || 8101; // default port to listen
 
   app.use(bodyParser.json());
   app.use(cors());
@@ -48,13 +48,13 @@ const c = config.dev;
       console.log( `press CTRL+C to stop server` );
   } );
 
-  const userCheck = await User.findOne({ where : { email : "adam@gmail.com" }});
+  const userCheck = await User.findOne({ where : { email : "admin@gmail.com" }});
   if(userCheck === null){
     const user = await User.create({
       id: 1,
       type: 1,
       ownership: 0,
-      email: "adam@gmail.com",
+      email: "admin@gmail.com",
       fullName:"Adam Hingoro",
       passwordHash:"computer",
     });

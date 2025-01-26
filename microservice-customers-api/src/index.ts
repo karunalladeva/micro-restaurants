@@ -9,14 +9,14 @@ import { Models } from './models/index';
 // var cors = require('cors')
 import cors from "cors";
 
-const c = config.dev;
+const c = config.prod;
 
 (async () => {
   await sequelize.addModels(Models);
   await sequelize.sync();
 
   const app = express();
-  const port = process.env.PORT || 8080; // default port to listen
+  const port = process.env.PORT || 8102; // default port to listen
 
   app.use(bodyParser.json());
   app.use(cors());
@@ -43,7 +43,7 @@ const c = config.dev;
 
   // Start the Server
   app.listen( port, () => {
-      console.log( `server running ` + c.url );
+      console.log( `server running ` + port );
       console.log( `press CTRL+C to stop server` );
   } );
 

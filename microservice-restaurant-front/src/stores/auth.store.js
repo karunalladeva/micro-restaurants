@@ -4,7 +4,7 @@ import axios from "axios";
 const user = writable([]);
 const token = writable([]);
 const authorized = writable(false);
-const api_hostname = "https://restaurant-reverseproxy-adamhingoro.cloud.okteto.net";
+const api_hostname = "http://localhost:8088";
 
 const AuthenticateHandle = (email , password) => {
     axios.post(`${api_hostname}/api/v0/users/auth/login`, {

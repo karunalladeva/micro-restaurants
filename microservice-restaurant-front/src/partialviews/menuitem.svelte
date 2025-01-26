@@ -10,9 +10,9 @@
 <div class="col col-xs-12 col-sm-12 col-md-4">
     <div>
         {#if item.imageURL}
-             <img src={item.imageURL} class="item_image" alt="Food item image"/>
+             <image src={item.imageURL} class="item_image" alt="Food item image"/>
         {:else}
-             <img class="item_image" src="https://via.placeholder.com/200x150?text=Visit+Blogging.com+Now" alt="Food item image"/>
+             <image class="item_image" src="https://via.placeholder.com/200x150?text=Visit+Blogging.com+Now" alt="Food item image"/>
         {/if}
     </div>
     <div class="item_details">

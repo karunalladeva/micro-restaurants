@@ -68,7 +68,7 @@ const HandleDelete = async (id) => {
                                     <td>{ id }</td>
                                     <td class="text-center">
                                         {#if imageURL !== null}
-                                            <img  src={ imageURL } class="menuItemImage" alt="Item Image" />
+                                            <image  src={ imageURL } class="menuItemImage" alt="Item Image" />
                                         {:else}
                                             <span>No image Uploaded</span>
                                         {/if}

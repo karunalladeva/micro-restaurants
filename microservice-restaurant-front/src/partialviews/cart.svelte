@@ -58,7 +58,7 @@
             <CustomerForm />
         {/if}
     {:else}
-        <img class="waiter_img" src="https://www.pngrepo.com/download/106540/waiter.png"  alt="waiting for orders"/>
+        <image class="waiter_img" src="https://www.pngrepo.com/download/106540/waiter.png"  alt="waiting for orders"/>
         <h3 class="waiting_for_orders">Waiting for your orders.</h3>
     {/if}
 </div>

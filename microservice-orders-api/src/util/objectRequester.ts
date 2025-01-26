@@ -1,7 +1,7 @@
 import request from 'request';
 import { config } from '../config/config';
 
-const c = config.dev;
+const c = config.prod;
 
 class ObjectRequester{
     static getUser( userId: number){

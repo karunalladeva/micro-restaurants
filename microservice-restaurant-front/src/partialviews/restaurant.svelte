@@ -9,9 +9,9 @@
     <div class="row">
         <div class="col col-md-4">
             {#if restaurant.imageURL}
-                <img class="img-rounded img-responsive"  src="{restaurant.imageURL}" alt="{restaurant.name}" >
+                <image class="img-rounded img-responsive"  src="{restaurant.imageURL}" alt="{restaurant.name}" />
             {:else}
-                <img class="img-rounded img-responsive"  src="http://placehold.it/350x250" alt="{restaurant.name}" >
+                <image class="img-rounded img-responsive"  src="http://placehold.it/350x250" alt="{restaurant.name}" />
             {/if}
         </div>
         <div class="col col-md-8">

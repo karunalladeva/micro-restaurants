@@ -1,0 +1,121 @@
+version: "3.8"
+services:
+  # restaurant-reverseproxy:
+  #   image: adamhingoro/restaurant-reverseproxy
+  #   ports:
+  #     - "8100:8080"
+  #   restart: always
+  #   depends_on:
+  #     - frontend
+  #     - admin-panel
+  #     - microservice-users-api
+  #     - microservice-restaurants-api
+  #     - microservice-orders-api
+  #     - microservice-customers-api
+  #     - db
+
+  # frontend:
+  #   image: adamhingoro/microservice-restaurant-front
+  #   environment:
+  #     URL: $URL
+
+  # admin-panel:
+  #   image: adamhingoro/microservicefrontend
+  #   environment:
+  #     URL: $URL
+
+  # microservice-users-api:
+  #   image: adamhingoro/restaurant-microservice-users-api
+  #   environment:
+  #     POSTGRES_USERNAME: $POSTGRES_USERNAME
+  #     POSTGRES_PASSWORD: $POSTGRES_PASSWORD
+  #     POSTGRES_DB: $POSTGRES_DB
+  #     POSTGRES_HOST: $POSTGRES_HOST
+  #     AWS_REGION: $AWS_REGION
+  #     AWS_PROFILE: $AWS_PROFILE
+  #     AWS_BUCKET: $AWS_BUCKET
+  #     JWT_SECRET: $JWT_SECRET
+  #     URL: $URL
+  #   depends_on:
+  #     - db
+
+  # microservice-restaurants-api:
+  #   image: adamhingoro/restaurant-microservice-restaurants-api
+  #   environment:
+  #     POSTGRES_USERNAME: $POSTGRES_USERNAME
+  #     POSTGRES_PASSWORD: $POSTGRES_PASSWORD
+  #     POSTGRES_DB: $POSTGRES_DB
+  #     POSTGRES_HOST: $POSTGRES_HOST
+  #     AWS_REGION: $AWS_REGION
+  #     AWS_PROFILE: $AWS_PROFILE
+  #     AWS_BUCKET: $AWS_BUCKET
+  #     JWT_SECRET: $JWT_SECRET
+  #     URL: $URL
+  #   depends_on:
+  #     - db
+
+  # microservice-orders-api:
+  #   image: adamhingoro/restaurant-microservice-orders-api
+  #   environment:
+  #     POSTGRES_USERNAME: $POSTGRES_USERNAME
+  #     POSTGRES_PASSWORD: $POSTGRES_PASSWORD
+  #     POSTGRES_DB: $POSTGRES_DB
+  #     POSTGRES_HOST: $POSTGRES_HOST
+  #     AWS_REGION: $AWS_REGION
+  #     AWS_PROFILE: $AWS_PROFILE
+  #     AWS_BUCKET: $AWS_BUCKET
+  #     JWT_SECRET: $JWT_SECRET
+  #     URL: $URL
+  #   depends_on:
+  #     - db
+
+  # microservice-customers-api:
+  #   image: adamhingoro/restaurant-microservice-customers-api
+  #   environment:
+  #     POSTGRES_USERNAME: $POSTGRES_USERNAME
+  #     POSTGRES_PASSWORD: $POSTGRES_PASSWORD
+  #     POSTGRES_DB: $POSTGRES_DB
+  #     POSTGRES_HOST: $POSTGRES_HOST
+  #     AWS_REGION: $AWS_REGION
+  #     AWS_PROFILE: $AWS_PROFILE
+  #     AWS_BUCKET: $AWS_BUCKET
+  #     JWT_SECRET: $JWT_SECRET
+  #     URL: $URL
+  #   depends_on:
+  #     - db
+
+  db:
+    image: postgres
+    env_file:
+      - ./.env
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  pgadmin:
+    image: dpage/pgadmin4
+    env_file:
+      - ./.env
+    ports:
+      - "8089:80"
+    depends_on:
+      - db
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin 
+
+  nginx:
+      image: nginx:latest
+      container_name: nginx
+      network_mode: host
+      ports:
+        - "8088:80" # Expose Nginx on localhost
+        - "8100:8100"
+      volumes:
+        - ./nginx.conf:/etc/nginx/nginx.conf:ro # Mount custom config
+
+volumes:
+  postgres_data:
+    driver: local
+  pgadmin_data:
+    driver: local

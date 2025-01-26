@@ -4,7 +4,12 @@ import commonjs from '@rollup/plugin-commonjs';
 import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
 
-const production = !process.env.ROLLUP_WATCH;
+const production = false//!process.env.ROLLUP_WATCH;
+
+const ignoreWarnings = new Set([
+	'a11y-no-onchange',
+	'a11y-label-has-associated-control'
+])
 
 export default {
 	input: 'src/main.js',
@@ -22,6 +27,12 @@ export default {
 			// a separate file - better for performance
 			css: css => {
 				css.write('public/build/bundle.css');
+			},
+			onwarn(warning, handler) {
+				if (ignoreWarnings.has(warning.code)) {
+					return
+				}
+				handler(warning)
 			}
 		}),
 

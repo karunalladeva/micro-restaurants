@@ -61,7 +61,7 @@ class RestaurantController{
             if(restaurant){
                 const ImageUUID = uuidv4();
                 const url = AWS.getPutSignedUrl(ImageUUID);
-                restaurant.imageURL = `https://${config.dev.aws_media_bucket}.s3.${config.dev.aws_reigion}.amazonaws.com/${ImageUUID}`;
+                restaurant.imageURL = `https://${config.prod.aws_media_bucket}.s3.${config.prod.aws_reigion}.amazonaws.com/${ImageUUID}`;
                 restaurant.save();
                 res.status(201).json({
                     url,

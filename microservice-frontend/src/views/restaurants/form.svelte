@@ -124,7 +124,7 @@
                     <div class="card-body">
                         {#if restaurant.imageURL !== null} 
                             <div class="col col-md-12 text-center">
-                                <img alt="item image" src={restaurant.imageURL} style="width:100%; border-radius:5px;" />
+                                <image alt="item image" src={restaurant.imageURL} style="width:100%; border-radius:5px;" />
                                 <b>Current Image</b>
                             </div>
                         {/if}

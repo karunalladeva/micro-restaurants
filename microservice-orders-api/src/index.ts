@@ -10,14 +10,14 @@ import { Models } from './models/index';
 import cors from "cors";
 import { Order } from './models/Order';
 
-const c = config.dev;
+const c = config.prod;
 
 (async () => {
   await sequelize.addModels(Models);
   await sequelize.sync();
 
   const app = express();
-  const port = process.env.PORT || 8080; // default port to listen
+  const port = process.env.PORT || 8103; // default port to listen
 
   app.use(bodyParser.json());
   app.use(cors());

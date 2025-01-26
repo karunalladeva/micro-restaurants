@@ -3,9 +3,14 @@ import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
-import Axios from 'axios';
+// import Axios from 'axios';
 
-const production = !process.env.ROLLUP_WATCH;
+const ignoreWarnings = new Set([
+	'a11y-no-onchange',
+	'a11y-label-has-associated-control'
+])
+
+const production = false//!process.env.ROLLUP_WATCH;
 
 export default {
 	input: 'src/main.js',
@@ -23,7 +28,14 @@ export default {
 			// a separate file - better for performance
 			css: css => {
 				css.write('public/build/bundle.css');
-			}
+			},
+
+			onwarn(warning, handler) {
+				if (ignoreWarnings.has(warning.code)) {
+					return
+				}
+				handler(warning)
+			}		
 		}),
 
 		// If you have external dependencies installed from

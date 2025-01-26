@@ -26,7 +26,7 @@ The application uses the `@hapi/joi` `ValidatedRequestSchema` and it expects the
 2. modify the `./src/config/config.ts`
     if you want to run locally I suggest you should use the local postgres database credentails in the `prod` or `dev`
 3. modify the envoriment in file `./src/database/sequelize.ts` 
-    use the `config.prod` or `config.dev` as per your needs. 
+    use the `config.prod` or `config.prod` as per your needs. 
 4. `npm install`
 5. `npm run dev`
 
